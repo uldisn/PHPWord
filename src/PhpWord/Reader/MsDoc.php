@@ -19,6 +19,7 @@ namespace PhpOffice\PhpWord\Reader;
 
 use PhpOffice\Common\Drawing;
 use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\Settings;
 use PhpOffice\PhpWord\Shared\OLERead;
 use PhpOffice\PhpWord\Style;
 
@@ -2279,7 +2280,7 @@ class MsDoc extends AbstractReader implements ReaderInterface
                                 }
                                 if (ord($sText[0]) == 1) {
                                     if (isset($oCharacters->style->image)) {
-                                        $fileImage = tempnam(sys_get_temp_dir(), 'PHPWord_MsDoc') . '.' . $oCharacters->style->image['format'];
+                                        $fileImage = tempnam(Settings::getTempDir(), 'PHPWord_MsDoc') . '.' . $oCharacters->style->image['format'];
                                         file_put_contents($fileImage, $oCharacters->style->image['data']);
                                         $oSection->addImage($fileImage, array('width' => $oCharacters->style->image['width'], 'height' => $oCharacters->style->image['height']));
                                         // print_r('>addImage<'.$fileImage.'>'.EOL);
